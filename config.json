@@ -1,8 +1,8 @@
 {
-  "botName": "Lúna ivy",
+  "botName": "Luná Ivy",
   "botNickname": "🤖 Bot",
   "prefix": "*",
-  "adminUIDs": ["YOUR_FACEBOOK_UID_HERE"],
+  "adminUIDs": ["61569790299591"],
   "language": "en",
   "autoSetNickname": true,
   "appState": "appstate.json"

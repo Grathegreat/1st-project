@@ -11,6 +11,15 @@ A powerful Facebook Messenger chatbot with Discord-like command structure, multi
 - 🤖 Auto-set bot nickname in new groups
 - 📝 Easy configuration via config.json
 
+## ⚠️ Security Warning
+
+**IMPORTANT:** Your `appstate.json` and `fb_dtsg_data.json` contain sensitive Facebook credentials. 
+- **NEVER** commit these files to version control
+- **NEVER** share these files with anyone
+- Both files are already in `.gitignore` to prevent accidental commits
+- If these files are exposed, your Facebook account could be compromised
+- Rotate your credentials immediately if you suspect they've been exposed
+
 ## Setup Instructions
 
 ### 1. Get Your Facebook AppState

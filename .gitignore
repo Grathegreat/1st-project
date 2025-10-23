@@ -1,4 +1,5 @@
 node_modules/
 appstate.json
+fb_dtsg_data.json
 *.log
 .env

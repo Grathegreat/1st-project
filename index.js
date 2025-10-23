@@ -1,4 +1,4 @@
-const login = require('ws3-fca');
+const { login } = require('ws3-fca');
 const fs = require('fs');
 const path = require('path');
 const Logger = require('./utils/logger');
@@ -100,7 +100,8 @@ function startBot() {
   
   let appState;
   try {
-    appState = JSON.parse(fs.readFileSync(config.appState, 'utf8'));
+    const appStateContent = fs.readFileSync(config.appState, 'utf8');
+    appState = JSON.parse(appStateContent);
     
     if (!appState || appState.length === 0) {
       Logger.error('AppState is empty! Please add your Facebook appstate to appstate.json');
@@ -116,7 +117,7 @@ function startBot() {
   loadCommands();
   loadEvents();
 
-  login({ appState }, (err, api) => {
+  login(appState, (err, api) => {
     if (err) {
       Logger.error('Login failed:', err);
       return;
