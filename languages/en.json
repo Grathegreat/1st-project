@@ -29,5 +29,8 @@
     "description": "Show or change bot prefix",
     "current": "Current prefix: {prefix}",
     "changed": "✅ Prefix changed to: {prefix}"
+  },
+  "autopost": {
+    "description": "Toggle autopost cat facts on/off (Admin only)"
   }
 }

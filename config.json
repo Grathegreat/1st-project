@@ -5,5 +5,10 @@
   "adminUIDs": ["61569790299591"],
   "language": "en",
   "autoSetNickname": true,
-  "appState": "appstate.json"
+  "appState": "appstate.json",
+  "autopost": {
+    "enabled": false,
+    "intervalMinutes": 3,
+    "threadID": ""
+  }
 }

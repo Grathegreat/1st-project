@@ -86,12 +86,57 @@ node index.js
 | `!info` | Show bot information | No |
 | `!prefix` | Show/change prefix | Yes (to change) |
 | `!restart` | Restart the bot | Yes |
+| `!autopost` | Toggle autopost cat facts | Yes |
 
 ## Events
 
 - **welcome** - Sends welcome message when someone joins
 - **leave** - Sends goodbye message when someone leaves
 - **autoReact** - Auto reacts to messages with bot commands
+
+## Autopost Feature
+
+The bot can automatically post random cat facts from [catfact.ninja](https://catfact.ninja/fact) at regular intervals.
+
+### Configure in config.json
+
+```json
+{
+  "autopost": {
+    "enabled": false,
+    "intervalMinutes": 3,
+    "threadID": ""
+  }
+}
+```
+
+- `enabled`: Set to `true` to enable autopost on bot startup
+- `intervalMinutes`: How often to post (default: 3 minutes)
+- `threadID`: The thread/group ID where cat facts will be posted
+
+### Control with Commands
+
+**Check status:**
+```
+!autopost
+```
+
+**Enable autopost in current thread:**
+```
+!autopost on
+```
+
+**Enable autopost in specific thread:**
+```
+!autopost on [threadID]
+```
+
+**Disable autopost:**
+```
+!autopost off
+```
+
+Cat facts will be automatically posted with a formatted message every X minutes (configurable).
 
 ## Creating Custom Commands
 

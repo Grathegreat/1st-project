@@ -29,5 +29,8 @@
     "description": "Ipakita o baguhin ang prefix ng bot",
     "current": "Kasalukuyang prefix: {prefix}",
     "changed": "✅ Nabago ang prefix sa: {prefix}"
+  },
+  "autopost": {
+    "description": "I-toggle ang autopost ng cat facts (Admin lang)"
   }
 }

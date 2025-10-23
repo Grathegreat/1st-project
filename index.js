@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const Logger = require('./utils/logger');
 const Language = require('./utils/language');
+const autopost = require('./utils/autopost');
 
 const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
 const lang = new Language(config.language);
@@ -128,6 +129,10 @@ function startBot() {
     Logger.info(`Prefix: ${config.prefix}`);
     Logger.info(`Language: ${config.language}`);
     Logger.info(`Admin UIDs: ${config.adminUIDs.join(', ')}`);
+
+    if (config.autopost && config.autopost.enabled) {
+      global.autopostInterval = autopost.startAutopost(api, config);
+    }
 
     api.setOptions({
       listenEvents: true,
