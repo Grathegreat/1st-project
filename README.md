@@ -61,6 +61,10 @@ Edit `config.json` to customize your bot:
   "language": "en",
   "autoSetNickname": true,
   "appState": "appstate.json"
+  "autopost": {
+    "enabled": true,
+    "intervalMinutes": 2,
+    "threadID": "THREAD ID"
 }
 ```
 
