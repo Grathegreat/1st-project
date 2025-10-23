@@ -1,7 +1,7 @@
 {
-  "botName": "FacebookBot",
+  "botName": "Lúna ",
   "botNickname": "🤖 Bot",
-  "prefix": "!",
+  "prefix": "*",
   "adminUIDs": ["YOUR_FACEBOOK_UID_HERE"],
   "language": "en",
   "autoSetNickname": true,
