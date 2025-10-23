@@ -7,7 +7,7 @@
   "autoSetNickname": true,
   "appState": "appstate.json",
   "autopost": {
-    "enabled": false,
+    "enabled": true,
     "intervalMinutes": 2,
     "threadID": ""
   }
