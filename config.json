@@ -8,7 +8,7 @@
   "appState": "appstate.json",
   "autopost": {
     "enabled": false,
-    "intervalMinutes": 3,
+    "intervalMinutes": 2,
     "threadID": ""
   }
 }
