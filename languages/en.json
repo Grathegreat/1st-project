@@ -1,0 +1,33 @@
+{
+  "botStarted": "✅ Bot is now online!",
+  "listening": "Listening for messages...",
+  "error": "❌ Error",
+  "commandNotFound": "Command not found. Use {prefix}help for available commands.",
+  "noPermission": "⛔ You don't have permission to use this command.",
+  "adminOnly": "This command is for admins only.",
+  "help": {
+    "title": "📚 Available Commands",
+    "usage": "Usage: {prefix}{command} {args}",
+    "description": "Description"
+  },
+  "ping": {
+    "description": "Check bot latency",
+    "response": "🏓 Pong! Latency: {ms}ms"
+  },
+  "help_cmd": {
+    "description": "Show all available commands"
+  },
+  "uid": {
+    "description": "Get user ID",
+    "response": "👤 Your UID: {uid}"
+  },
+  "restart": {
+    "description": "Restart the bot (Admin only)",
+    "response": "🔄 Restarting bot..."
+  },
+  "prefix": {
+    "description": "Show or change bot prefix",
+    "current": "Current prefix: {prefix}",
+    "changed": "✅ Prefix changed to: {prefix}"
+  }
+}

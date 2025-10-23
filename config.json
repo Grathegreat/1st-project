@@ -1,0 +1,9 @@
+{
+  "botName": "FacebookBot",
+  "botNickname": "🤖 Bot",
+  "prefix": "!",
+  "adminUIDs": ["YOUR_FACEBOOK_UID_HERE"],
+  "language": "en",
+  "autoSetNickname": true,
+  "appState": "appstate.json"
+}

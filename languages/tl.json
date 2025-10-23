@@ -1,0 +1,33 @@
+{
+  "botStarted": "✅ Ang bot ay online na!",
+  "listening": "Nakikinig ng mga mensahe...",
+  "error": "❌ May Mali",
+  "commandNotFound": "Hindi nahanap ang command. Gamitin ang {prefix}help para sa mga available na commands.",
+  "noPermission": "⛔ Wala kang pahintulot na gamitin ang command na ito.",
+  "adminOnly": "Para lang sa mga admin ang command na ito.",
+  "help": {
+    "title": "📚 Mga Available na Commands",
+    "usage": "Paggamit: {prefix}{command} {args}",
+    "description": "Paglalarawan"
+  },
+  "ping": {
+    "description": "Tingnan ang bilis ng bot",
+    "response": "🏓 Pong! Bilis: {ms}ms"
+  },
+  "help_cmd": {
+    "description": "Ipakita ang lahat ng available na commands"
+  },
+  "uid": {
+    "description": "Kunin ang UID ng user",
+    "response": "👤 Ang iyong UID: {uid}"
+  },
+  "restart": {
+    "description": "I-restart ang bot (Admin lang)",
+    "response": "🔄 Nire-restart ang bot..."
+  },
+  "prefix": {
+    "description": "Ipakita o baguhin ang prefix ng bot",
+    "current": "Kasalukuyang prefix: {prefix}",
+    "changed": "✅ Nabago ang prefix sa: {prefix}"
+  }
+}
