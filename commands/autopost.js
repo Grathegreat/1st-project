@@ -25,7 +25,9 @@ module.exports = {
       message += `${config.prefix}autopost off - Disable autopost\n`;
       message += `${config.prefix}autopost on [threadID] - Enable in specific thread`;
       
-      return api.sendMessage(message, event.threadID);
+      return await api.sendMessage(message, event.threadID).catch(err => {
+        console.error('Failed to send autopost status message:', err);
+      });
     }
     
     const action = args[0].toLowerCase();
@@ -44,31 +46,37 @@ module.exports = {
       try {
         fs.writeFileSync('config.json', JSON.stringify(config, null, 2));
       } catch (error) {
-        return api.sendMessage(
+        return await api.sendMessage(
           `❌ Failed to save config: ${error.message}`,
           event.threadID
-        );
+        ).catch(err => {
+          console.error('Failed to send error message:', err);
+        });
       }
       
       global.autopostInterval = require('../utils/autopost').startAutopost(api, config);
       
-      api.sendMessage(
+      await api.sendMessage(
         `✅ Autopost enabled!\n\n` +
         `📍 Thread ID: ${targetThreadID}\n` +
         `⏰ Interval: ${config.autopost.intervalMinutes} minutes\n\n` +
         `Cat facts will be posted automatically.`,
         event.threadID
-      );
+      ).catch(err => {
+        console.error('Failed to send autopost enabled message:', err);
+      });
     } else if (action === 'off') {
       config.autopost.enabled = false;
       
       try {
         fs.writeFileSync('config.json', JSON.stringify(config, null, 2));
       } catch (error) {
-        return api.sendMessage(
+        return await api.sendMessage(
           `❌ Failed to save config: ${error.message}`,
           event.threadID
-        );
+        ).catch(err => {
+          console.error('Failed to send error message:', err);
+        });
       }
       
       if (global.autopostInterval) {
@@ -76,15 +84,19 @@ module.exports = {
         global.autopostInterval = null;
       }
       
-      api.sendMessage(
+      await api.sendMessage(
         `❌ Autopost disabled!\n\nCat facts will no longer be posted automatically.`,
         event.threadID
-      );
+      ).catch(err => {
+        console.error('Failed to send autopost disabled message:', err);
+      });
     } else {
-      api.sendMessage(
+      await api.sendMessage(
         `Invalid action. Use:\n${config.prefix}autopost on\n${config.prefix}autopost off`,
         event.threadID
-      );
+      ).catch(err => {
+        console.error('Failed to send invalid action message:', err);
+      });
     }
   }
 };

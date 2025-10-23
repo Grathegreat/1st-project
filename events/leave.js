@@ -14,7 +14,11 @@ module.exports = {
             const name = userInfo[leftParticipantFbId]?.name || 'Someone';
             const message = `👋 ${name} has left the group. Goodbye!`;
             
-            api.sendMessage(message, event.threadID);
+            api.sendMessage(message, event.threadID, (sendErr) => {
+              if (sendErr) {
+                console.error('Failed to send leave message:', sendErr);
+              }
+            });
           }
         });
       }

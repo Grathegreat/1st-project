@@ -16,6 +16,8 @@ module.exports = {
     }
     
     const response = lang.get('uid.response', { uid: targetUID });
-    api.sendMessage(response, event.threadID);
+    await api.sendMessage(response, event.threadID).catch(err => {
+      console.error('Failed to send UID message:', err);
+    });
   }
 };

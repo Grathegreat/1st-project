@@ -26,6 +26,8 @@ module.exports = {
     message += `📦 Node: ${process.version}\n\n`;
     message += `╚═══════════════════╝`;
     
-    api.sendMessage(message, event.threadID);
+    await api.sendMessage(message, event.threadID).catch(err => {
+      console.error('Failed to send info message:', err);
+    });
   }
 };

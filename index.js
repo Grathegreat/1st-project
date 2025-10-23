@@ -12,6 +12,20 @@ const commands = new Map();
 const events = new Map();
 const cooldowns = new Map();
 
+function safeSendMessage(api, message, threadID, callback) {
+  return new Promise((resolve, reject) => {
+    api.sendMessage(message, threadID, (err, messageInfo) => {
+      if (err) {
+        Logger.error(`Failed to send message to thread ${threadID}:`, err);
+        resolve(null);
+      } else {
+        if (callback) callback(null, messageInfo);
+        resolve(messageInfo);
+      }
+    });
+  });
+}
+
 function loadCommands() {
   const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
   
@@ -40,21 +54,18 @@ function loadEvents() {
   }
 }
 
-function handleCommand(api, event, args, senderID) {
+async function handleCommand(api, event, args, senderID) {
   const commandName = args[0].toLowerCase();
   const command = commands.get(commandName) || [...commands.values()].find(cmd => 
     cmd.config.aliases && cmd.config.aliases.includes(commandName)
   );
 
   if (!command) {
-    return api.sendMessage(
-      lang.get('commandNotFound', { prefix: config.prefix }),
-      event.threadID
-    );
+    return safeSendMessage(api, lang.get('commandNotFound', { prefix: config.prefix }), event.threadID);
   }
 
   if (command.config.adminOnly && !config.adminUIDs.includes(senderID)) {
-    return api.sendMessage(lang.get('adminOnly'), event.threadID);
+    return safeSendMessage(api, lang.get('adminOnly'), event.threadID);
   }
 
   if (!cooldowns.has(command.config.name)) {
@@ -70,7 +81,8 @@ function handleCommand(api, event, args, senderID) {
 
     if (now < expirationTime) {
       const timeLeft = (expirationTime - now) / 1000;
-      return api.sendMessage(
+      return safeSendMessage(
+        api,
         `⏳ Please wait ${timeLeft.toFixed(1)} seconds before using this command again.`,
         event.threadID
       );
@@ -86,10 +98,11 @@ function handleCommand(api, event, args, senderID) {
       Logger.command(command.config.name, senderName, event.threadID);
     });
 
-    command.run({ api, event, args: args.slice(1), lang, config });
+    await command.run({ api, event, args: args.slice(1), lang, config });
   } catch (error) {
     Logger.error(`Error executing command ${command.config.name}:`, error);
-    api.sendMessage(
+    safeSendMessage(
+      api,
       `${lang.get('error')}: ${error.message}`,
       event.threadID
     );

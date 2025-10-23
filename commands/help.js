@@ -23,7 +23,9 @@ module.exports = {
       
       message += `\n💡 Use ${config.prefix}help <command> for more info`;
       
-      api.sendMessage(message, event.threadID);
+      await api.sendMessage(message, event.threadID).catch(err => {
+        console.error('Failed to send help message:', err);
+      });
     } else {
       const commandName = args[0].toLowerCase();
       const command = commandFiles
@@ -31,7 +33,9 @@ module.exports = {
         .find(cmd => cmd.config.name === commandName || (cmd.config.aliases && cmd.config.aliases.includes(commandName)));
       
       if (!command) {
-        return api.sendMessage(`Command "${commandName}" not found.`, event.threadID);
+        return await api.sendMessage(`Command "${commandName}" not found.`, event.threadID).catch(err => {
+          console.error('Failed to send message:', err);
+        });
       }
       
       const desc = lang.get(`${command.config.name}.description`) || command.config.description;
@@ -49,7 +53,9 @@ module.exports = {
       message += `⏱️ Cooldown: ${command.config.cooldown || 3}s\n`;
       message += `🔒 Admin Only: ${command.config.adminOnly ? 'Yes' : 'No'}`;
       
-      api.sendMessage(message, event.threadID);
+      await api.sendMessage(message, event.threadID).catch(err => {
+        console.error('Failed to send help message:', err);
+      });
     }
   }
 };

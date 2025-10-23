@@ -17,7 +17,11 @@ module.exports = {
           welcomeMessage += `Have fun! 🎉`;
           
           setTimeout(() => {
-            api.sendMessage(welcomeMessage, event.threadID);
+            api.sendMessage(welcomeMessage, event.threadID, (err) => {
+              if (err) {
+                console.error('Failed to send welcome message:', err);
+              }
+            });
           }, 1000);
         }
       }
