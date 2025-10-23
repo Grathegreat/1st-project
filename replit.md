@@ -1,6 +1,6 @@
 # Overview
 
-This is a Facebook Messenger chatbot built with Node.js that features a Discord-like command and event system. The bot uses the `ws3-fca` library to interact with Facebook Messenger and provides a modular architecture for commands and events. It supports multi-language localization (English and Tagalog), command cooldowns, admin permissions, and beautiful console logging with Chalk. The bot can automatically react to messages, welcome new group members, and respond to various commands with a configurable prefix system.
+This is a Facebook Messenger chatbot built with Node.js that features a Discord-like command and event system. The bot uses the `ws3-fca` library to interact with Facebook Messenger and provides a modular architecture for commands and events. It supports multi-language localization (English and Tagalog), command cooldowns, admin permissions, and beautiful console logging with Chalk. The bot can automatically react to messages, welcome new group members, respond to various commands with a configurable prefix system, and automatically post cat facts at regular intervals.
 
 # User Preferences
 
@@ -63,6 +63,17 @@ Events automatically respond to Facebook Messenger events:
 - **autoReact**: Adds emoji reactions to bot mentions and command messages
 
 **Event Pattern**: Each event listens for specific `logMessageType` or message patterns and responds accordingly.
+
+## Autopost Feature
+
+**Scheduled Cat Fact Posting**: The bot can automatically post random cat facts from catfact.ninja at configurable intervals using Node.js setInterval.
+
+- **Implementation**: `utils/autopost.js` fetches cat facts via HTTPS and manages interval timers
+- **Control**: Can be enabled/disabled via config.json or the `autopost` command (admin-only)
+- **Configuration**: Interval timing (default 3 minutes) and target thread ID are configurable
+- **Safety**: Clears existing intervals before starting new ones to prevent duplicate timers
+- **Rationale**: Demonstrates scheduled tasks and external API integration; provides engaging content for groups
+- **Added**: October 2025
 
 ## Logging System
 
